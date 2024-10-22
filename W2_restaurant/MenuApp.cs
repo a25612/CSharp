@@ -17,33 +17,37 @@ class MenuApp
         {
             Console.WriteLine("\n--- Menú del Restaurante ---");
             Console.WriteLine("1. Añadir Plato Principal");
-            Console.WriteLine("2. Añadir Bebida");
-            Console.WriteLine("3. Añadir Postre");
-            Console.WriteLine("4. Mostrar Pedido");
-            Console.WriteLine("5. Calcular Total y Salir");
+            Console.WriteLine("2. Añadir Segundo Plato");
+            Console.WriteLine("3. Añadir Bebida");
+            Console.WriteLine("4. Añadir Postre");
+            Console.WriteLine("5. Mostrar Pedido");
+            Console.WriteLine("6. Calcular Total y Salir");
             Console.WriteLine("Selecciona una opción:");
 
-            if (!int.TryParse(Console.ReadLine(), out opcion) || opcion < 1 || opcion > 5)
+            if (!int.TryParse(Console.ReadLine(), out opcion) || opcion < 1 || opcion > 6)
             {
-                Console.WriteLine("Error: Por favor selecciona una opción válida (1-5).");
+                Console.WriteLine("Error: Por favor selecciona una opción válida (1-6).");
                 continue;
             }
 
             switch (opcion)
             {
                 case 1:
-                    AñadirPlato();
+                    AñadirPlatoPrincipal();
                     break;
                 case 2:
-                    AñadirBebida();
+                    AñadirSegundoPlato();
                     break;
                 case 3:
-                    AñadirPostre();
+                    AñadirBebida();
                     break;
                 case 4:
-                    pedido.MostrarPedido();
+                    AñadirPostre();
                     break;
                 case 5:
+                    pedido.MostrarPedido();
+                    break;
+                case 6:
                     double total = pedido.CalcularTotal();
                     Console.WriteLine($"\nTotal a pagar: {total:C}");
                     break;
@@ -52,10 +56,10 @@ class MenuApp
                     break;
             }
 
-        } while (opcion != 5);
+        } while (opcion != 6);
     }
 
-    private void AñadirPlato()
+    private void AñadirPlatoPrincipal()
     {
         Console.WriteLine("Nombre del plato:");
         string nombre = Console.ReadLine();
@@ -69,6 +73,23 @@ class MenuApp
         string ingredientes = Console.ReadLine();
 
         PlatoPrincipal plato = new PlatoPrincipal(nombre, precio, ingredientes);
+        pedido.AnadirProductos(plato);
+    }
+
+    private void AñadirSegundoPlato()
+    {
+        Console.WriteLine("Nombre del plato:");
+        string nombre = Console.ReadLine();
+        Console.WriteLine("Precio del plato:");
+        if (!double.TryParse(Console.ReadLine(), out double precio) || precio <= 0)
+        {
+            Console.WriteLine("Error: El precio debe ser un número positivo.");
+            return;
+        }
+        Console.WriteLine("Ingredientes:");
+        string ingredientes = Console.ReadLine();
+
+        SegundoPlato plato = new SegundoPlato(nombre, precio, ingredientes);
         pedido.AnadirProductos(plato);
     }
 

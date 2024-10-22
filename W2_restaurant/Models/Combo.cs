@@ -3,12 +3,14 @@ using Models;
 public class Combo : Producto {
 
     public PlatoPrincipal PlatoPrincipal {get;set;}
+    public SegundoPlato SegundoPlato {get;set;}
     public Bebida Bebida {get;set;}
     public Postre Postre {get;set;}
     public double Descuento {get;set;} //0.10 para 10% descuento
 
-public Combo(PlatoPrincipal platoPrincipal, Bebida bebida, Postre postre, double descuento): base("Combo especial", 0) {
+public Combo(PlatoPrincipal platoPrincipal,SegundoPlato segundoPlato, Bebida bebida, Postre postre, double descuento): base("Combo especial", 0) {
    PlatoPrincipal = platoPrincipal;
+   SegundoPlato = segundoPlato;
    Bebida = bebida;
    Postre = postre;
    Descuento = descuento;
@@ -16,7 +18,7 @@ public Combo(PlatoPrincipal platoPrincipal, Bebida bebida, Postre postre, double
 }
 
  private double CalcularPrecio() {
-    double precio = PlatoPrincipal.Precio + Bebida.Precio + Postre.Precio;
+    double precio = PlatoPrincipal.Precio + SegundoPlato.Precio + Bebida.Precio + Postre.Precio;
     double precioConDescuento =  precio * (1 - Descuento);
     return precioConDescuento;
  }
@@ -24,6 +26,7 @@ public Combo(PlatoPrincipal platoPrincipal, Bebida bebida, Postre postre, double
     public override void MostrarDetalles() {
          Console.WriteLine("\n-------Combo------");
          PlatoPrincipal.MostrarDetalles();
+         SegundoPlato.MostrarDetalles();
          Bebida.MostrarDetalles();
          Postre.MostrarDetalles();
          Console.WriteLine($"Descuento aplicado: {Descuento*100} %");
