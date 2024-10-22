@@ -1,0 +1,3 @@
+PlatoPrincipal|Plato combinado|12,5|Pollo, patatas, tomate
+Bebida|Limonada|1,5|False
+Postre|Tiramisú|7|800

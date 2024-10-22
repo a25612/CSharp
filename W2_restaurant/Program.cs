@@ -1,5 +1,4 @@
-﻿
-using Models;
+﻿using Models;
 
 var plato = new PlatoPrincipal("Plato combinado", 12.50, "Pollo, patatas, tomate");
 plato.MostrarDetalles();
@@ -21,11 +20,17 @@ pedido.AnadirProductos(postre);
 pedido.MostrarPedido();
 pedido.CalcularTotal();
 
-var menuApp = new MenuApp();
-menuApp.MostrarMenu();
+//var menuApp = new MenuApp();
+//menuApp.MostrarMenu();
 
-var total = pedido.CalcularTotal();
-Console.WriteLine($"Total: {total}");
+//var total = pedido.CalcularTotal();
+//Console.WriteLine($"Total: {total}");
+var rutaFicherotxt = "pedidos.txt";
+pedido.GuardarPedido(rutaFicherotxt);
+
+var pedidoCargado = new Pedido();
+pedidoCargado.CargarPedido(rutaFicherotxt);
+pedidoCargado.MostrarPedido();
 
 var combo = new Combo(plato,segundoPlato,bebida,postre,0.10);
 combo.MostrarDetalles();
@@ -35,4 +40,3 @@ pedido.AnadirProductos(combo,3);
 pedido.MostrarPedido();
 var totalConCantidad = pedido.CalcularTotal();
 Console.WriteLine($"Total pedido: {totalConCantidad}");
-
