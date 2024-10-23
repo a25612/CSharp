@@ -7,8 +7,8 @@ class Pedido
     //Investiga las diferencias entre tupla y diccionario
 
     public double Descuento {get;set;} = 0.0;
-    public double Impuesto {get;set;} = 0.21;
-    public DateTime FechaPedido {get;set;} 
+    public static double Impuesto {get; set;} = 0.21;
+    public DateTime FechaPedido {get; private set;} 
 
     public Pedido()
     {

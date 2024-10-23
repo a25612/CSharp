@@ -1,5 +1,17 @@
 ﻿using Models;
 
+try{
+    var postrecito = new Postre("Flan", -2.5, 800);
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine("Error creando postre: " + ex.Message);
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Error: " + ex.Message);
+}
+
 var plato = new PlatoPrincipal("Plato combinado", 12.50, "Pollo, patatas, tomate");
 plato.MostrarDetalles();
 
